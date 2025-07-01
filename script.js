@@ -84,17 +84,30 @@ searchInput.addEventListener("input", (e) => {
   renderProducts(filtered);
 });
 
-// Toast notification for "Add to Cart" action
+// Keep track of items added
+let cartCount = {};
+
 function addToCart(productName) {
+  // Update count
+  if (cartCount[productName]) {
+    cartCount[productName]++;
+  } else {
+    cartCount[productName] = 1;
+  }
+
+  // Toast notification
   Toastify({
-    text: `"${productName}" added to cart!`,
-    duration: 2000, // disappears faster (2 seconds)
-    close: true, // shows a close (X) button
+    text: `${cartCount[productName]} ${productName} added to cart!`,
+    duration: 2000,
+    close: true,
     gravity: "top",
     position: "right",
-    backgroundColor: "#ffffff", // white background
-    className:
-      "text-purple-700 border border-purple-300 rounded shadow px-4 py-2 font-medium",
+    style: {
+      background: "#ffffff",
+      color: "#6B21A8",
+      border: "1px solid #D8B4FE",
+    },
+    className: "rounded shadow px-4 py-2 font-medium",
     stopOnFocus: true,
   }).showToast();
 }
