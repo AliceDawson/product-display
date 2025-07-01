@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Responsive Product Display</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Lucide Icons CDN -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Toastify CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css"
+    />
+
+    <!-- Toastify JS -->
+    <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+
+    <!-- Custom JavaScript file (runs after DOM is parsed due to defer) -->
+    <script src="script.js" defer></script>
+  </head>
+
+  <body class="bg-gray-100 text-gray-800">
+    <div class="container mx-auto p-6">
+      <!-- Page Title -->
+      <h1 class="text-3xl font-bold text-center text-purple-700 mb-8">
+        Our Products
+      </h1>
+
+      <!-- Search Input Field with Lucide Icon -->
+      <div class="relative max-w-md mx-auto mb-8">
+        <input
+          id="searchInput"
+          type="text"
+          placeholder="Search products..."
+          class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600"
+        />
+        <div
+          class="absolute left-3 top-2.5 text-gray-400"
+          id="search-icon"
+        ></div>
+      </div>
+
+      <!-- Product Cards Container -->
+      <div
+        id="product-grid"
+        class="grid gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mt-4"
+      ></div>
+    </div>
+
+    <!-- Script to Render Lucide Search Icon -->
+    <script>
+      lucide.createIcons({
+        icons: {
+          search: lucide.Search,
+        },
+        attrs: {
+          class: "w-5 h-5",
+        },
+        nameAttr: "data-lucide",
+      });
+
+      const searchIcon = document.getElementById("search-icon");
+      searchIcon.innerHTML = `<i data-lucide="search"></i>`;
+      lucide.createIcons(); // Re-render the icon
+    </script>
+  </body>
+</html>
